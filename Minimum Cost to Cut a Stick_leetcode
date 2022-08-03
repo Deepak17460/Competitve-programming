@@ -1,0 +1,30 @@
+
+// Memoization approach
+class Solution {
+private:
+    int Helper(int i, int j, vector<int> &cuts, vector<vector<int>> &dp) {
+        if(i > j) return 0; 
+        int mini = INT_MAX;
+        if(dp[i][j] != -1) return dp[i][j]; 
+        for(int ind = i; ind <= j; ind++) {
+            int val = cuts[j+1] - cuts[i-1] + Helper(i, ind-1, cuts, dp) + Helper(ind+1, j, cuts, dp); 
+            mini = min(mini, val); 
+        }
+       // cout<<mini<<endl;
+        cout<<i<<" "<<j<<endl;
+        return dp[i][j] = mini; 
+        
+    }
+public:
+    int minCost(int n, vector<int>& cuts) {
+        int len = cuts.size(); 
+        cuts.push_back(n); 
+        cuts.insert(cuts.begin(), 0); 
+        sort(cuts.begin(), cuts.end()); 
+        vector<vector<int>> dp(len+1, vector<int>(len+1, -1)); 
+        return Helper(1, len, cuts, dp); 
+    }
+};
+
+Time Complexity is O(M^3)
+space Complexity is O(M^2)+Auxiliary space
