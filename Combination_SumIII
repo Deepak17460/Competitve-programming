@@ -1,0 +1,54 @@
+Given array : [1,2,3]
+
+Now let's visualize we are traversing a graph like following top to bottom -
+1 2 3
+1 2 3
+1 2 3
+1 2 3
+.
+.
+.
+1 2 3
+Contraints :
+1 <= target <= 1000
+1 <= nums.length <= 200
+
+Therefore,
+Max rows possible = Max target value i.e 1000
+Max columns possible = Max number of elements i.e . 200
+
+We only need to consider rows as it gives - total ways target possible with given array
+=> So we'll create dp[1001] to memoize.
+
+Steps
+Base Condition :
+
+currSum > target => return 0
+currSum == target => return 1
+Decision Logic :
+
+We choose any index and go to the next row.
+C++ Code
+
+class Solution {
+public:
+    
+    vector<int> dp;
+    
+    Solution() {
+        dp.resize(1001);
+        fill(dp.begin(), dp.end(), -1);
+    }
+    
+    int combinationSum4(vector<int>& nums, int target, int currSum=0) {
+        if(currSum > target) return 0;
+        if(currSum == target) return 1;
+        if(dp[currSum] != -1) return dp[currSum];
+        int ways = 0;
+        for(int i=0; i<nums.size(); i++) {
+            if(currSum + nums[i] <= target)
+                ways += combinationSum4(nums, target, currSum + nums[i]);
+        }
+        return dp[currSum] = ways;
+    }
+};
