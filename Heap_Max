@@ -1,0 +1,71 @@
+Here is the few key Points to get the idea over the Heap!!
+To get the Parent of anyNode is {i/2}
+To get the left Child is (2*i)
+to get the right Child is (2*i+1)
+
+~ Max_Heap~
+Heap is a Tree data structure. it need a Complete Binary tree!!
+
+
+1.Insert an Element in Max Heap
+
+  
+                 17
+              /      \
+            15         13
+          /    \      /  \
+         9      6    5   10
+        / \    /  \
+       4   8  3    1
+       
+       ele=18;
+ Insert an Element in Max_Heap
+ 
+ 
+ 
+ 
+ Code of this Problem:-
+ 
+  #include<bits/stdc++.h>
+
+ using namespace std;
+void Max_heap(int n,vector<int>&nums,int ele){
+    nums.insert(nums.end(),ele);
+       int i=nums.size()-1;
+    while(i>=1){
+        int parent=i/2;
+        if(nums[i]>nums[parent]){
+            swap(nums[i],nums[parent]);
+            i=parent;
+        }
+        else{
+            return;
+        }
+    }
+}
+ int main(){
+     int n;
+     cin>>n;
+     vector<int>nums(n);
+     for(int i=0;i<n;i++){
+         cin>>nums[i];
+     }
+     //nums.insert(nums.begin(),0);
+     int ele;
+     cin>>ele;
+     Max_heap(n,nums,ele);
+     for(int i :nums){
+         cout<<i<<" ";
+     }
+
+ }
+ 
+ Output:-  18 17 15 9 6 13 10 4 8 3 1 5 
+   
+                  18
+              /       \
+            17          15
+          /    \        /  \
+         9      6      13   10
+        / \    /  \    /
+       4   8  3    1   5
