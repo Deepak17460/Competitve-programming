@@ -1,0 +1,54 @@
+Deletion is done in Max heap in O(logn)
+Deletion in max Heap:- Delete the root Node & put there the value of last element(leaf node) then remaintain the sequenec of Max Heap
+
+
+
+
+
+
+
+
+
+
+
+ #include<bits/stdc++.h>
+
+ using namespace std;
+
+void   Max_heapDeletion(vector<int>&nums){
+        nums.insert(nums.begin(),0);
+        int ele=nums.back();
+        nums.pop_back();
+        nums.insert(nums.begin()+1,ele); 
+        nums.erase(nums.begin()+2);
+        int n=nums.size();
+        int i=1; 
+        while(n>i){
+            int left=nums[2*i];
+            int right=nums[2*i+1];
+            int maxi=(left>right)?(2*i):(2*i+1);
+            if(nums[maxi]>nums[i]){
+                swap(nums[maxi],nums[i]);
+                i=maxi;
+            }
+            else{
+                return;
+            }
+        }
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0;i<n;i++){
+        cin>>nums[i];
+    }
+    Max_heapDeletion(nums);
+    for(auto i:nums){
+        cout<<i<<" ";
+    }
+}
+
+
+(i.)Time Complexity of this code would be O(logn)
+(ii.)Space complexity would be O(n)
