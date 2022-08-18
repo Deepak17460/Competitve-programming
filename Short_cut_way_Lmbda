@@ -1,0 +1,13 @@
+ #include<bits/stdc++.h>
+
+ using namespace std;
+
+
+ int main(){
+    // lambda function like a Normal function
+    auto num=[](int x){return x+2;}(2);
+    cout<<num<<endl;
+       // lambda function
+    auto sum=[](int x,int y){return x+y;};
+    cout<<sum(2,3);
+ }
