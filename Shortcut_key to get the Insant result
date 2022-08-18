@@ -1,0 +1,32 @@
+Using Short key to get the result
+
+code->
+
+ #include<bits/stdc++.h>
+
+ using namespace std;
+
+
+ int main(){
+     int n;
+     cin>>n;
+     vector<int>arr(n);
+
+     for(int i=0;i<n;i++){
+         cin>>arr[i];
+     }
+       // Get the mininimum element
+     //int Mini=*min_element(arr.begin(),arr.end());
+     auto Mini=min_element(arr.begin(),arr.end());
+     cout<<(*Mini)<<endl;
+     //cout<<Mini<<endl;
+     // Get the Maximum element
+     auto Max=max_element(arr.begin(),arr.end());
+     cout<<(*Max)<<endl;
+     // count the number same element
+     int num=count(arr.begin(),arr.end(),2);
+     cout<<num<<endl;
+     // get the sum of all element
+     int sum=accumulate(arr.begin(),arr.end(),0);
+     cout<<sum<<endl;
+ }
