@@ -1,0 +1,23 @@
+Code->
+
+
+ #include<bits/stdc++.h>
+
+ using namespace std;
+
+
+ int main(){
+    // there are few algorithm which are more important like All_of, None_of & any_of
+    int n;
+    cin>>n;
+    vector<int>arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    // all_of it is an algorithm which is based on True or False
+    cout<<all_of(arr.begin(),arr.end(),[](int x){return x>0;})<<endl;
+    // any_of it is an alogrithm which is based on true or false
+    cout<<any_of(arr.begin(),arr.end(),[](int x){return x>0;})<<endl;
+    //none_of it is an algorithm which is based on true or false
+    cout<<none_of(arr.begin(),arr.end(),[](int x){return x>0;})<<endl;
+ }
