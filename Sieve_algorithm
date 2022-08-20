@@ -1,0 +1,70 @@
+Code_Sieve Algorithm to find the all primes number in guven range
+
+#include<bits/stdc++.h>
+ using namespace std;
+
+ const int N=1e7+9;
+ vector<bool>Isprime(N,1);
+// sieve of eratosthenes or Sieve algorithm
+ // Find all prime numbers from starting to N 
+ void Prime(){
+         Isprime[0]=Isprime[1]=0;
+         for(int i=2;i<N;i++){
+             // If My consecutive num is prime then marks its all multiple false
+             if(Isprime[i]==1){
+                 for(int j=2*i;j<N;j+=i){
+                     Isprime[j]=0;
+                 }
+             }
+         }
+ }
+
+ int main(){
+     // for preparing the Prime number
+     Prime();
+    //  int num;
+    //  cin>>num;
+
+     // checking it is prime or not
+    //cout<<Isprime(num)<<endl;
+    for(int i=0;i<20;i++){
+        cout<<i<<" "<<Isprime[i]<<endl;
+    }
+ }
+ 
+ 2nd part of the code
+ 
+  #include<bits/stdc++.h>
+ using namespace std;
+
+ const int N=1e7+9;
+ vector<bool>Isprime(N,1);
+// sieve of eratosthenes or Sieve algorithm
+ // Find all prime numbers from starting to N 
+ void Prime(){
+         Isprime[0]=Isprime[1]=0;
+         for(int i=2;i<N;i++){   // for(int i=2;i*i<N;i++) it can be possible one
+             // If My consecutive num is prime then marks its all multiple false
+             if(Isprime[i]==1){
+                 for(int j=2*i;j<N;j+=i){ // for(int j=i*i;j<N;j+=i)
+                     Isprime[j]=0;
+                 }
+             }
+         }
+ }
+
+ int main(){
+     // for preparing the Prime number
+     Prime();
+    //  int num;
+    //  cin>>num;
+
+     // checking it is prime or not
+    //cout<<Isprime(num)<<endl;
+    for(int i=0;i<20;i++){
+        cout<<i<<" "<<Isprime[i]<<endl;
+    }
+ }
+ 
+ 
+ // Time Complxeity is O(n(log(logn))
