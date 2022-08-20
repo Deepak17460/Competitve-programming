@@ -1,0 +1,71 @@
+Time Complexity is O(nlog(logn)) +O(N*M) & space Complexity is O(N)
+
+Code->
+
+
+ #include<bits/stdc++.h>
+
+
+ using namespace std;
+
+ vector<int>Mprime;
+void Sieve(int N,int M){
+    vector<bool>Isprime(N+1,1);
+    Isprime[0]=Isprime[1]=0;
+    for(int i=2;i*i<=N;i++){
+        if(Isprime[i]){
+        for(int j=i*i;j<=N;j+=i){
+                Isprime[j]=0;
+        }
+      }
+    }
+    // Important
+    int ct=0;
+    for(int i=2;i<=N;i++){
+        if(Isprime[i]){
+            Mprime.push_back(i);
+            ct++;
+        }
+        if(ct>=M){
+            break;
+        }
+    }
+}
+int GetMinimumPrime(int N,int M){
+     //vector<int>dp(N+1,INT_MAX);
+     int dp[N+1];
+     const int INF=1e9;
+     for(int i=0;i<=N;i++){
+         dp[i]=INF;
+     }
+     dp[0]=0;
+     dp[2]=1;
+     for(int i=3;i<=N;i++){
+         for(int j=0;j<Mprime.size();j++){
+         if(Mprime[j]>i){
+             break;
+         }
+         else{
+             dp[i]=min(dp[i],1+dp[i-Mprime[j]]);
+             
+         }
+      }
+     }
+    //  for(int i:dp){
+    //      cout<<i<<" "<<endl;
+    //  }
+     if(dp[N]>=INF){
+         return -1;
+     }
+     else
+     {
+         return dp[N];
+     }
+}
+ int main(){
+     int N,M;
+     cin>>N>>M;
+     //  find all prime numbers
+     Sieve(N,M);
+    cout<<GetMinimumPrime(N,M);
+ }
